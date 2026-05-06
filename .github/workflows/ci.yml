@@ -23,6 +23,9 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run backend tests
+        env:
+          DATABASE_URL: sqlite:///./test/db
+          OPENWEATHER_API_KEY: fake_key
         run: pytest tests -v
 
       - name: Setup Node.js
