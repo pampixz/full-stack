@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://127.0.0.1:8080/api/v1",
+  baseURL: "/api/v1",
 });
 
 // Добавляем access token к каждому запросу
@@ -32,7 +32,7 @@ api.interceptors.response.use(
         }
 
         const res = await axios.post(
-          "http://127.0.0.1:8080/api/v1/auth/refresh",
+          "/api/v1/auth/refresh",
           {
             refresh_token: refreshToken,
           }

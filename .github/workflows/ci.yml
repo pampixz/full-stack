@@ -45,3 +45,10 @@ jobs:
 
       - name: Build Docker images
         run: docker compose build
+
+      - name: Simulate deployment
+        run: |
+          echo "Deployment stage started"
+          docker compose config
+          echo "Deployment configuration is valid"
+          echo "Application is ready for deployment"
