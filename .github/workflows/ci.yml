@@ -24,7 +24,7 @@ jobs:
 
       - name: Run backend tests
         env:
-          DATABASE_URL: sqlite:///./test/db
+          DATABASE_URL: sqlite:////tmp/test.db
           OPENWEATHER_API_KEY: fake_key
         run: pytest tests -v
 
