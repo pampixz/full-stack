@@ -1,0 +1,17 @@
+sequenceDiagram
+ actor U as Гость
+ participant F as Frontend
+ participant B as Backend
+ participant D as MySQL
+ U->>F: Email и пароль
+ F->>B: POST /auth/login
+ B->>D: Найти User
+ D-->>B: User или отсутствие
+ alt Верные данные
+ B->>D: Сохранить refresh token
+ B-->>F: 200, токены
+ F-->>U: Личный кабинет
+ else Неверные данные
+ B-->>F: 401 Invalid credentials
+ F-->>U: Ошибка входа
+ end

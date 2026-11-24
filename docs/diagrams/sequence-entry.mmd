@@ -1,0 +1,12 @@
+sequenceDiagram
+ actor U as Пользователь
+ participant F as Frontend
+ participant B as Backend
+ participant D as MySQL
+ U->>F: Текст и теги
+ F->>B: POST /entries/ + JWT
+ B->>B: Проверить права и данные
+ B->>D: INSERT Entry
+ D-->>B: ID и дата
+ B-->>F: 201 EntryResponse
+ F-->>U: Запись создана

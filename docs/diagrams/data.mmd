@@ -1,0 +1,44 @@
+erDiagram
+ User ||--o{ Entry : owns
+ User ||--o{ EntryFile : owns
+ Entry ||--o{ EntryFile : contains
+ User ||--o{ RefreshToken : has
+ User {
+  int id
+  string email
+  string password_hash
+  string role
+  datetime created_at
+ }
+ Entry {
+  int id
+  int user_id
+  text text
+  string tags
+  datetime created_at
+ }
+ EntryFile {
+  int id
+  int entry_id
+  int user_id
+  string original_name
+  string stored_name
+  string file_path
+  string content_type
+  int file_size
+  datetime created_at
+ }
+ Meeting {
+  int id
+  string title
+  text description
+  datetime meeting_date
+  datetime created_at
+ }
+ RefreshToken {
+  int id
+  int user_id
+  string token
+  boolean is_revoked
+  datetime created_at
+ }
