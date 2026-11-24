@@ -1,0 +1,6 @@
+stateDiagram-v2
+ [*] --> Active: Вход / выпуск
+ Active --> Revoked: Выход или ротация
+ Active --> Expired: Истечение срока JWT
+ Revoked --> [*]
+ Expired --> [*]
