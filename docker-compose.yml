@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:8
+    image: mysql:8.4.13
     container_name: mood-db
     restart: always
     environment:
@@ -28,7 +28,7 @@ services:
         condition: service_healthy
     environment:
       DATABASE_URL: mysql+pymysql://root:root@db:3306/mood_diary
-      OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY}
+      OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY:-}
     ports:
       - "8080:8080"
     healthcheck:
@@ -48,14 +48,13 @@ services:
     ports:
       - "3000:80"
     healthcheck:
-      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-
   proxy:
-    image: nginx:alpine
+    image: nginx:1.31.8-alpine
     container_name: mood-proxy
     restart: unless-stopped
     depends_on:
